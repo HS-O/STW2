@@ -1,0 +1,222 @@
+<MainWindow>
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+        GridLayout:
+            cols: 4
+            size_hint: .40, .200
+            Button:
+                text: "Home"
+                size_hint: .40,.200
+
+            Label:
+                text: "Amare"
+                font_size: 40
+
+
+            Button:
+                text: "Profile"
+                size_hint: .40, .200
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'profile'
+
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            Label:
+                size_hint_y: 0.5
+                height: self.texture_size[1]
+                padding: 10, 10
+                text:
+                    'post\n' * 100
+
+        GridLayout:
+            size_hint: .20, .200
+            cols: 4
+            Button:
+                text: "world"
+
+
+            Button:
+                text: "chat"
+
+            Button:
+                text: "post"
+                on_press:
+                    root.manager.current= "post"
+                    root.manager.transition.direction = "left"
+
+
+            Button:
+                text: "private"
+
+<ProfileWindow>
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+        GridLayout:
+            cols: 4
+            size_hint: .40, .200
+            Button:
+                text: "back"
+                size_hint: .40,.200
+                on_press:
+                    root.manager.transition.direction= 'right'
+                    root.manager.current= 'main'
+
+            Label:
+                text: "profile"
+                font_size: 40
+
+            Button:
+                text: "edit"
+                size_hint: .40, .200
+        GridLayout:
+            cols: 1
+            Button:
+                text: "account management"
+                background_color: 0, 0, 0, 0
+
+            Button:
+                text: "setting"
+                background_color: 0, 0, 0, 0
+            Button:
+                text: "privacy"
+                background_color: 0, 0, 0, 0
+
+        AnchorLayout:
+            size_hint: .80, .350
+            cols: 1
+            Button:
+                text: "log in "
+                anchor_x : 'center'
+                size_hint: .45, .45
+                on_press:
+                    root.manager.current = 'login'
+
+        AnchorLayout:
+            cols: 1
+            size_hint: .30, .200
+            Button:
+                text: "Register"
+                anchor_x: 'center'
+                anchor_y: 'top'
+                font_size: 30
+                size_hint:.40, .50
+                background_color: 0,0,0,0
+                on_press:
+                    root.manager.current = 'register'
+
+<login>
+    ema: email
+    pw: password
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+        GridLayout:
+            cols: 1
+            size_hint: .40, .200
+            Label:
+                text: "Login page"
+                font_size: 40
+        FloatLayout:
+            Label:
+                id: a
+                pos_hint: {"x": -0.1, "top": 0.9}
+                size_hint: 0.8, 0.2
+                text:"Email: "
+            TextInput:
+                id: email
+                pos_hint: {"x": 0.55, "top": 0.825}
+                size_hint: 0.3, 0.05
+                font_size: 40
+            Label:
+                id: b
+                pos_hint: {"x": -0.1, "top": 0.6}
+                size_hint: 0.8, 0.2
+                text:"Password: "
+            TextInput:
+                id: password
+                pos_hint: {"x": 0.55, "top": 0.525}
+                size_hint: 0.3, 0.05
+                font_size: 40
+
+            Button:
+                text: "Submit"
+                id: password
+                pos_hint: {"x": 0.35, "top": 0.25}
+                size_hint: 0.25, 0.08
+                font_size: 30
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'main'
+
+
+
+<RegisterWindow>
+    ema: email
+    pw: password
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+        GridLayout:
+            cols: 1
+            size_hint: .40, .200
+            Label:
+                text: "Registration page"
+                font_size: 40
+        FloatLayout:
+            Label:
+                id: a
+                pos_hint: {"x": -0.1, "top": 0.9}
+                size_hint: 0.8, 0.2
+                text:"Email: "
+            TextInput:
+                id: email
+                pos_hint: {"x": 0.55, "top": 0.825}
+                size_hint: 0.3, 0.05
+                font_size: 40
+            Label:
+                id: b
+                pos_hint: {"x": -0.1, "top": 0.6}
+                size_hint: 0.8, 0.2
+                text:"Password: "
+            TextInput:
+                id: password
+                pos_hint: {"x": 0.55, "top": 0.525}
+                size_hint: 0.3, 0.05
+                font_size: 40
+
+            Button:
+                text: "Submit"
+                id: password
+                pos_hint: {"x": 0.35, "top": 0.25}
+                size_hint: 0.25, 0.08
+                font_size: 30
+                on_press:
+                    root.manager.transition.direction =  'right'
+                    root.manager.current = 'profile'
+                    root.username()
+
+<PostingWindow>
+    PostScreen:
+        id: setting
+        name: 'setting'
+
+<PostingWindow>:
+    BoxLayout:
+        Button:
+            text: 'post here'
+            on_release:
+                root.manager.current = 'settings'
+                root.manager.ids.settings.func_abc(self)
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+        GridLayout:
+            text: "here will be what u wanna post"
